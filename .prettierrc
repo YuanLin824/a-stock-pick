@@ -1,0 +1,13 @@
+{
+  "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-packagejson"],
+  "endOfLine": "lf",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "arrowParens": "always"
+}

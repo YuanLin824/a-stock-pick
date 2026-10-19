@@ -1,0 +1,26 @@
+{
+  "name": "a-stock-pick",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "YuanLin",
+  "scripts": {
+    "commit": "czg",
+    "format": "prettier --write .",
+    "lint-staged": "lint-staged",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "husky": "^9.1.7"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "czg": "^1.14.0",
+    "globals": "^17.13.0",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-packagejson": "^3.0.2"
+  }
+}

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# 使用 lint-staged 配合 prettier 格式化代码
+npm run lint-staged

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# 检查 commit message
+npx --no-install commitlint --edit "$1"

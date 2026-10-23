@@ -13,9 +13,7 @@ strategies/          # 策略规格文档，每个策略一份 Markdown
 scripts/             # 策略实现，每个策略一个子目录
   overnight/         # 一夜持股
 tests/               # 按策略划分的单元测试
-data-sources/        # 外部数据源接口文档（腾讯、新浪、同花顺等）
-docs/                # 补充文档
-references/          # 参考资料
+data-sources/        # 外部数据源接口文档（腾讯、新浪、同花顺、东财、交易所等）
 data/                # 运行时状态、日志、缓存（本地生成，不提交）
 ```
 
@@ -63,11 +61,13 @@ npm run overnight:probe -- sh600519 --ticks
 
 当前「一夜持股」策略使用：
 
-- **腾讯**：实时行情、分时、日线/分钟 K 线、当日逐笔
+- **腾讯**：实时行情、分时、日线/分钟 K 线、当日逐笔（接口与字段见 [data-sources/tencent.md](data-sources/tencent.md)）
 - **深交所**：交易日历
 - **本地代码表**：`scripts/overnight/universe.txt`，运行时只读该文件，不依赖其他项目
 
 该策略不调用东财。股票池可通过 `npm run overnight:refresh` 在本地校验/去重/排序，或通过 `--from` 从外部代码表刷新。
+
+数据源总览与选源建议见 [data-sources/README.md](data-sources/README.md)。除腾讯与深交所日历外，其余数据源当前策略尚未接入，主要供后续策略参考。
 
 后续策略如使用其他数据源，在对应策略的 README 中说明，并在 `data-sources/` 留档。
 

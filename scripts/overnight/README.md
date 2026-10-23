@@ -42,6 +42,8 @@ npm run overnight:probe -- sh600519 --ticks
 npm run overnight:buy -- --dry-run --force --codes sh600519,sz000001
 ```
 
+其他参数：`--verbose` 输出调试日志；`--pretty` 让 stdout 的 JSON 缩进；`--cash N` 在首次 buy/sell 时指定初始资金。
+
 ## 股票池
 
 `scripts/overnight/universe.txt` 是主板代码表，每行一个带市场前缀的代码（如 `sh600519`），当前包含 3352 只主板代码。
@@ -60,11 +62,13 @@ npm run overnight:refresh -- --from C:/path/to/codes.json
 
 ## 数据源
 
+接口与字段细节见 [data-sources/tencent.md](../../data-sources/tencent.md)。
+
 - 腾讯实时行情：现价、昨收、涨幅、量比、换手率、总市值、涨停/跌停价、VWAP（字段 51）
 - 腾讯分时 `minute/query`：逐分钟价格、累计成交量、累计成交额；用于计算 VWAP 和分时条件
 - 腾讯日线 / m1 K 线：MA5/10/20、近三日量能、14:00–14:30 高低点
 - 腾讯逐笔：最终 1~3 只候选的 VWAP 复核
-- 深交所交易日历：判断交易日；失败时回退到 weekday + 腾讯行情时间
+- 深交所交易日历：判断交易日；失败时回退到 weekday 判断，并在日志中标注
 
 不调用东财；ST/退市整理用名称含 `ST` / `退` 近似过滤，停牌用腾讯 `is_stale` 与行情时间判断。
 
@@ -86,7 +90,7 @@ C:\Users\27521\Documents\VScode\a-stock-pick\scripts\overnight\cli.mjs run
 ```
 
 - 交易日 14:30：买入扫描
-- 交易日 09:30：卖出监控（脚本会自行轮询到 11:30）
+- 交易日 09:30：卖出监控（有可卖持仓时轮询到 11:30；空仓立即退出）
 
 脚本会读取深交所日历，非交易日自动退出。建议把 stdout 重定向到文件，便于外部执行器读取 JSON；使用 `--stream` 时为 JSONL。
 

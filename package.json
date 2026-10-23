@@ -9,7 +9,14 @@
     "commit": "czg",
     "format": "prettier --write .",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "overnight:buy": "node scripts/overnight/cli.mjs buy",
+    "overnight:probe": "node scripts/overnight/cli.mjs probe",
+    "overnight:refresh": "node scripts/overnight/cli.mjs refresh-universe",
+    "overnight:run": "node scripts/overnight/cli.mjs run",
+    "overnight:sell": "node scripts/overnight/cli.mjs sell",
+    "overnight:status": "node scripts/overnight/cli.mjs status",
+    "prepare": "husky",
+    "test:overnight": "node --test tests/overnight.test.mjs"
   },
   "dependencies": {
     "husky": "^9.1.7"
